@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import UploadButton from "@/components/UploadButton";
 
+
 export default function Home() {
   return (
     <div>
@@ -17,12 +18,7 @@ export default function Home() {
       and AI-powered business insights.
     </p>
 
-    <button
-  className="mt-10 bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl text-lg font-semibold"
-  onClick={() => alert("Welcome to DataInsight AI")}
-   >
-  Upload Dataset
-</button>
+    <UploadButton />
 
   </main>
   </div>
