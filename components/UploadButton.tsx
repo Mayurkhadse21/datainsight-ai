@@ -2,7 +2,13 @@
 import { readExcel } from "@/lib/excel";
 import { useRef, useState } from "react";
 
-export default function UploadButton() {
+type UploadButtonProps = {
+  onDataLoaded: (data: any[]) => void;
+};
+
+export default function UploadButton({
+  onDataLoaded,
+}: UploadButtonProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
 
@@ -18,7 +24,7 @@ export default function UploadButton() {
     if (file) {
     setFileName(file.name);
 
-    readExcel(file);
+    readExcel(file, onDataLoaded);
     }
   };
 

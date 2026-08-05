@@ -1,6 +1,9 @@
 import * as XLSX from "xlsx";
 
-export function readExcel(file: File) {
+export function readExcel(
+  file: File,
+  onDataLoaded: (data: any[]) => void
+) {
   const reader = new FileReader();
 
   reader.onload = (event) => {
@@ -10,11 +13,13 @@ export function readExcel(file: File) {
       type: "array",
     });
 
-    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+    const firstSheet =
+      workbook.Sheets[workbook.SheetNames[0]];
 
-    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+    const jsonData =
+      XLSX.utils.sheet_to_json(firstSheet);
 
-    console.log(jsonData);
+    onDataLoaded(jsonData);
   };
 
   reader.readAsArrayBuffer(file);
